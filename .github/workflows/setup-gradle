@@ -1,0 +1,16 @@
+name: Setup Gradle Wrapper
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Gradle Wrapper
+        run: |
+          chmod +x ./gradlew
+          ./gradlew wrapper
