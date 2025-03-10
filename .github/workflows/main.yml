@@ -3,7 +3,7 @@ name: Android Build
 on:
   push:
     branches:
-      - main  # Chạy khi có cập nhật trên nhánh main
+      - main
   pull_request:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set Up JDK
       uses: actions/setup-java@v3
@@ -21,8 +21,8 @@ jobs:
         distribution: 'zulu'
         java-version: '17'
 
-    - name: Set Up Android SDK
-      uses: android-actions/setup-android@v2
+    - name: Grant execute permission for Gradle Wrapper
+      run: chmod +x ./gradlew
 
     - name: Build APK
       run: ./gradlew assembleDebug
